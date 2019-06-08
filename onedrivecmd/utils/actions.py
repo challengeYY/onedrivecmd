@@ -31,7 +31,13 @@ except:
 
 import onedrivesdk
 from onedrivesdk.helpers.resource_discovery import ResourceDiscoveryRequest
-from os.path import splitext
+import os
+
+
+def splitext(path):
+    if len(path.split('.')) > 2:
+        return path.split('.')[0],'.'+'.'.join(path.split('.')[-2:])
+    return os.path.splitext(path)
 
 ### Action
 
@@ -291,6 +297,7 @@ def do_list(client, args, lFolders = None):
         curPath=path
         if not curPath.endswith("/"):
             curPath=curPath+"/"
+
         folder = get_remote_item(client, path = curPath)
         
         if not folder.folder:

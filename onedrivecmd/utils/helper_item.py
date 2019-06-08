@@ -28,7 +28,7 @@ def get_remote_item(client, path = '', id = ''):
     try:
         if path != '':  # check path
             path = od_path_to_api_path(path)
-            if path.endswith("/") and path is not "/":
+            if path.endswith("/") and (path != "/"):
                 path=path[:-1]
             f = client.item(drive = 'me', path = path).get()
         elif id != '':  # check id
